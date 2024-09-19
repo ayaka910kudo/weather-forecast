@@ -24,13 +24,16 @@ npm install @mui/material @emotion/react @emotion/styled
 
 - ダウンロードしたAPI keyを.envファイル(環境変数を管理する)に記載する
 1. .envファイル(ファイル名任意)をプロジェクトのルートディレクトリに作成する
-2. ダウンロードしたAPI keyなどを.envファイルに記載する
+2. ダウンロードしたAPI keyなどを.envファイルに記載する(ローカル環境でのみ使用する場合は.env.localというファイル名にする)
 ```
 react_app_api_url = 'https://api.openweathermap.org/data/2.5'
 REACT_APP_API_KEY = APIキーをここに貼り付け
 REACT_APP_ICON_URL = 'https://openweathermap.org/img/w'
 ```
-
+- アクセスURLやパラメータは[ドキュメント](https://openweathermap.org/api)より確認する(今回はCurrent weather dataを使用)
+```
+https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+```
 
 ### 参考
  - [Reactでアプリを作成しました](https://qiita.com/kanfutrooper/items/d2e309174931362b1f8a)
