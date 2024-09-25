@@ -18,7 +18,7 @@ const WeatherBox = () => {
           textAlign: "center",
         }}
       >
-        <div style={{ padding: "10px" }}>
+        <Box sx={{ p: 3 }}>
           <Typography variant="body1" style={{ margin: "10px" }}>
             都市名
           </Typography>
@@ -29,15 +29,15 @@ const WeatherBox = () => {
           <Typography variant="body1" style={{ margin: "10px" }}>
             天気
           </Typography>
-          <div
-            style={{
+          <Box
+            sx={{
               display: "flex",
               justifyContent: "center",
               margin: "10px",
             }}
           >
-            <div
-              style={{
+            <Box
+              sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -56,10 +56,10 @@ const WeatherBox = () => {
               <Typography variant="body1" style={{ textAlign: "center" }}>
                 mm
               </Typography>
-            </div>
+            </Box>
 
-            <div
-              style={{
+            <Box
+              sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -78,10 +78,10 @@ const WeatherBox = () => {
               <Typography variant="body1" style={{ textAlign: "center" }}>
                 %
               </Typography>
-            </div>
+            </Box>
 
-            <div
-              style={{
+            <Box
+              sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -100,11 +100,11 @@ const WeatherBox = () => {
               <Typography variant="body1" style={{ textAlign: "center" }}>
                 m
               </Typography>
-            </div>
+            </Box>
             {/* <Typography variant="body1" style={{ backgroundColor: "green" ,margin: "10px"}}>湿度</Typography>
               <Typography variant="body1" style={{ backgroundColor: "green" ,margin: "10px"}}>風速</Typography> */}
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Box>
     </>
   );
