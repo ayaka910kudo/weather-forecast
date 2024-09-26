@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import WeatherBox from "./components/WeatherBox"; // WeatherBoxコンポーネントのインポート
-
+import Weather from "../services/weatherApi";
 import { useEffect, useState } from "react"; // React Hooks のインポート
 
 const theme = createTheme({
@@ -30,12 +30,14 @@ const theme = createTheme({
 });
 
 const WeatherForecast = () => {
+  // Weather();
   return (
     <>
       <ThemeProvider theme={theme}>
         <Container maxWidth="sm">
           <WeatherBox />
           <WeatherBox />
+          <Weather />
         </Container>
       </ThemeProvider>
     </>
