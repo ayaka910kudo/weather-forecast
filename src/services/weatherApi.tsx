@@ -23,7 +23,7 @@ const Weather = () => {
       <h1>Tokyo Weather</h1>
       {weatherData ? (
         <div>
-          <p>Temperature: {weatherData.main.temp}°C</p>
+          <p>Temperature: {(weatherData.main.temp - 273.15).toFixed(1)}°C</p>
           <p>Weather: {weatherData.weather[0].description}</p>
         </div>
       ) : (
