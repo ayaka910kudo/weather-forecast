@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import WeatherBox from "./components/WeatherBox"; // WeatherBoxコンポーネントのインポート
 import Weather from "../services/Weather";
 import { useEffect, useState } from "react"; // React Hooks のインポート
+import ThreeHoursWeather from "@/services/ThreeHoursWeather";
 
 const theme = createTheme({
   typography: {
@@ -38,6 +39,7 @@ const WeatherForecast = () => {
           <WeatherBox />
           <WeatherBox />
           <Weather />
+          <ThreeHoursWeather />
         </Container>
       </ThemeProvider>
     </>
