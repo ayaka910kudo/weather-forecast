@@ -70,6 +70,8 @@ https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API k
 
 4. レスポンスにエラーがあった場合の処理を`.catch()`に書く。一つ目の引数は表示メッセージ、二つ目の引数`error`はエラーの詳細。開発環境や console では表示推奨
 
+_オブジェクトを直接小要素としてレンダリング(表示)しようとするとエラーが出るため、プロパティを個別に取り出して表示する。_
+
 ```
 fetch('https://api.example.com/data')
   .then((response) => response.json()) // responseをJSONに変換
