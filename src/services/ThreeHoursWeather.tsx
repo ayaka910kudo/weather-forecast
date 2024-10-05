@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { ThreeHoursWeatherApiResponse } from "../types/types";
 
 const ThreeHoursWeather = () => {
-  const [ThreeHoursWeatherData, setThreeHoursWeatherData] = useState(null);
+  const [ThreeHoursWeatherData, setThreeHoursWeatherData] = useState<ThreeHoursWeatherApiResponse | null>(null);
   const ow_api_url = process.env.NEXT_PUBLIC_OW_API_URL ?? "";
   const ow_api_key = process.env.NEXT_PUBLIC_OW_API_KEY ?? "";
 
