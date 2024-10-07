@@ -104,6 +104,101 @@ const WeatherBox = () => {
             {/* <Typography variant="body1" style={{ backgroundColor: "green" ,margin: "10px"}}>湿度</Typography>
               <Typography variant="body1" style={{ backgroundColor: "green" ,margin: "10px"}}>風速</Typography> */}
           </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "10px",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "10px",
+                flexDirection: "column", //縦向きに組む
+              }}
+            >
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                3時間後
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                天気
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                気温
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "10px",
+                flexDirection: "column", //縦向きに組む
+              }}
+            >
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                6時間後
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                天気
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                気温
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "10px",
+                flexDirection: "column", //縦向きに組む
+              }}
+            >
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                9時間後
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                天気
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                気温
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "10px",
+                flexDirection: "column", //縦向きに組む
+              }}
+            >
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                12時間後
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                天気
+              </Typography>
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                気温
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "10px",
+              }}
+            ></Box>
+            {/* <Typography variant="body1" style={{ backgroundColor: "green" ,margin: "10px"}}>湿度</Typography>
+              <Typography variant="body1" style={{ backgroundColor: "green" ,margin: "10px"}}>風速</Typography> */}
+          </Box>
         </Box>
       </Box>
     </>
