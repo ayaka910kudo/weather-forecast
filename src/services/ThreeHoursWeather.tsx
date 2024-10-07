@@ -28,7 +28,8 @@ const ThreeHoursWeather = () => {
         <div>
           <h2>{ThreeHoursWeatherData.city.name}の天気予報</h2>
           <ul>
-            {ThreeHoursWeatherData.list.map((item: any, index: number) => (
+            {/* sliceメソッドで0-4番目の要素のみを抽出して、それに対してmap */}
+            {ThreeHoursWeatherData.list.slice(0, 4).map((item: any, index: number) => (
               <li key={index}>
                 時間: {new Date(item.dt * 1000).toLocaleString()} - 天気: {item.weather[0].description} - 気温:{" "}
                 {(item.main.temp - 273.15).toFixed(1)}°C
