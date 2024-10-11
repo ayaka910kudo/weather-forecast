@@ -7,7 +7,6 @@ const ow_api_key = process.env.NEXT_PUBLIC_OW_API_KEY ?? "";
 export const fetchCurrentWeather = async (city: string) => {
   try {
     const response = await axios.get(`${ow_api_url}/weather?q=${city}&appid=${ow_api_key}`);
-    console.log("response", response);
     return response.data; // 取得したデータを返す
   } catch (error: any) {
     throw new Error("Error fetching weather data: " + error.message);
@@ -18,7 +17,6 @@ export const fetchCurrentWeather = async (city: string) => {
 export const fetchThreeHoursWeatherData = async (city: string) => {
   try {
     const response = await axios.get(`${ow_api_url}/forecast/?q=${city}&appid=${ow_api_key}`);
-
     return response.data; // 取得したデータを返す
   } catch (error: any) {
     throw new Error("Error fetching weather data: " + error.message);

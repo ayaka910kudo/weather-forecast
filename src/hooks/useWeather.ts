@@ -9,7 +9,6 @@ export const useWeather = (city: string) => {
 
   useEffect(() => {
     const getWeatherData = async () => {
-      console.log("getWeatherDataが呼ばれた");
       try {
         const data = await fetchCurrentWeather(city);
         setWeatherData(data);

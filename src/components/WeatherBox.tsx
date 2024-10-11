@@ -1,13 +1,12 @@
 "use client";
 
+import { weatherTranslation } from "../constants/translation";
 import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const WeatherBox = () => {
   const { weatherData } = useWeather("Tokyo");
-
-  console.log(weatherData);
 
   return (
     <>
@@ -25,14 +24,14 @@ const WeatherBox = () => {
       >
         <Box sx={{ p: 3 }}>
           <Typography variant="body1" style={{ margin: "10px" }}>
-            都市名
+            {weatherData?.name}
           </Typography>
           <Typography variant="h2" style={{ margin: "10px" }}>
-            XX°
+            {`${(weatherData?.main.temp - 273.15).toFixed(1)}°C`}
           </Typography>
 
           <Typography variant="body1" style={{ margin: "10px" }}>
-            天気
+            {weatherTranslation[weatherData?.weather[0].main]}
           </Typography>
           <Box
             sx={{
