@@ -1,9 +1,14 @@
 "use client";
 
+import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const WeatherBox = () => {
+  const { weatherData } = useWeather("Tokyo");
+
+  console.log(weatherData);
+
   return (
     <>
       <Box
