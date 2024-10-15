@@ -155,6 +155,14 @@ const DisplayCard = () => {
   const { data } = useApiData("Tokyo");
 ```
 
+- **注意** map などで展開する場合、最初のレンダリング時にはデータが未取得のため変数は null などになる。エラーを防ぐため、展開する場合は条件付きレンダリングをする。
+
+```
+{data?.list && data.list.map((item, index) => (
+
+))}
+```
+
 ### 参考
 
 - [React でアプリを作成しました](https://qiita.com/kanfutrooper/items/d2e309174931362b1f8a)

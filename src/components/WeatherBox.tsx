@@ -7,8 +7,9 @@ import Typography from "@mui/material/Typography";
 import HourlyWeatherItem from "./HourlyWeatherItem";
 
 const WeatherBox = () => {
-  const { weatherData } = useWeather("Tokyo");
-
+  const { weatherData, threeHoursWeatherData } = useWeather("Hiratsuka");
+  console.log(weatherData);
+  console.log(threeHoursWeatherData);
   return (
     <>
       <Box
@@ -120,10 +121,22 @@ const WeatherBox = () => {
               m: "10px",
             }}
           >
-            <HourlyWeatherItem hour={3} weather="晴れ" temperature={20} />
+            {threeHoursWeatherData?.list &&
+              threeHoursWeatherData.list.slice(1, 5).map((item, index: number) => (
+                <HourlyWeatherItem
+                  key={index}
+                  hour={new Date(item.dt * 1000).getHours()} // UNIXタイムスタンプを時間に変換
+                  weather={weatherTranslation[item.weather[0].main]}
+                  temperature={(item.main.temp - 273.15).toFixed(1)} // ケルビンから摂氏に変換
+                />
+              ))}
+            {/* {threeHoursWeatherData.list.map((item, index) => (
+              <HourlyWeatherItem key={index} hour={item.hour} weather={item.weather} temperature={item.temperature} />
+            ))} */}
+            {/* <HourlyWeatherItem hour={3} weather="晴れ" temperature={20} />
             <HourlyWeatherItem hour={6} weather="曇り" temperature={13} />
             <HourlyWeatherItem hour={9} weather="雷" temperature={5} />
-            <HourlyWeatherItem hour={12} weather="雨" temperature={2} />
+            <HourlyWeatherItem hour={12} weather="雨" temperature={2} /> */}
 
             <Box
               sx={{
