@@ -58,11 +58,11 @@ https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API k
 - 基本的に、どの人も共通なローカル環境での設定ファイルや、共有してはいけない環境変数(API key など)は.gitignore に記載する。
 - _例 .env とファイルの最後に追加すると.env ファイルがコミットから除外される。_
 
-## データの取得方法
+## API データ
 
 - **useEffect**を使用して、関数のマウント時にデータを取得する
 
-### 基本の流れ
+### 取得の流れ
 
 1. `fetch`メソッドを使い API からデータ取得
 2. 正常なレスポンスが返った時の処理を`then()`に書く。受け取ったレスポンスを利用するために、response オブジェクトとなったレスポンスをまずは json 形式にする。
@@ -83,9 +83,7 @@ fetch('https://api.example.com/data')
   });
 ```
 
-## 取得したデータの処理
-
-### 日本語への変換
+### データの処理-日本語への変換
 
 - 以下のように辞書型の対応表を作成し、それを参照して表示する。
 
@@ -98,6 +96,63 @@ const translation = {
 return (
    <p>くだもの: {translation[apple]}</p>
   );
+```
+
+### データの組み込み方
+
+見た目を作ったコンポーネントに API から取得したデータを組み込むには、以下のように機能を分割してデータを呼び出す。
+
+1. **サービス関数**
+
+- API からデータを取得し、それを返すところまで。
+
+```
+export const fetchData = async () => {
+  try {
+    const response = await axios.get(sampleUrl);
+    return response.data; // 取得したデータを返す
+  } catch (error: any) {
+    throw new Error("Error fetching weather data: " + error.message);
+  }
+};
+```
+
+2. **カスタムフック**
+
+- サービス関数が返すデータやエラーなどの状況を state で管理して、それを返す関数を作る。複数の API からデータを取得する場合、一つの関数で全てのデータを取得できるようにまとめると良い。
+
+```
+export const useApiData = (city: string) => {
+  const [sampleData, setSampleData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    const getSampleData = async () => {
+      try {
+        const data = await fetchData(city);
+        setSampleData(data);
+      } catch (err) {
+        setError(err);
+        console.error(err);
+      } finally {　
+        setLoading(false);
+      }
+    };
+
+    getSampleData();
+  }, [city]);
+
+  return { sampleData, loading, error };
+};
+```
+
+3. **コンポーネント**
+   コンポーネント内でカスタムフックを呼び出し、返り値を変数に入れ、コンポーネント内で使用する。
+
+```
+const DisplayCard = () => {
+  const { data } = useApiData("Tokyo");
 ```
 
 ### 参考
