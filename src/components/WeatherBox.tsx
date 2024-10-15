@@ -5,6 +5,7 @@ import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import HourlyWeatherItem from "./HourlyWeatherItem";
+import { ThreeHoursWeatherDataList } from "@/types/types";
 
 const WeatherBox = () => {
   const { weatherData, threeHoursWeatherData } = useWeather("Hiratsuka");
@@ -122,7 +123,7 @@ const WeatherBox = () => {
             }}
           >
             {threeHoursWeatherData?.list &&
-              threeHoursWeatherData.list.slice(1, 5).map((item, index: number) => (
+              threeHoursWeatherData.list.slice(1, 5).map((item: ThreeHoursWeatherDataList, index: number) => (
                 <HourlyWeatherItem
                   key={index}
                   hour={new Date(item.dt * 1000).getHours()} // UNIXタイムスタンプを時間に変換
