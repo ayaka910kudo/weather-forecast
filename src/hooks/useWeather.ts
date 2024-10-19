@@ -1,6 +1,7 @@
 import { fetchCurrentWeather, fetchThreeHoursWeatherData } from "../services/weather";
 import { useEffect, useState } from "react";
 
+// APIからデータを取得する
 export const useWeather = (city: string) => {
   const [weatherData, setWeatherData] = useState<any>(null);
   const [threeHoursWeatherData, setThreeHoursWeatherData] = useState<any>(null);

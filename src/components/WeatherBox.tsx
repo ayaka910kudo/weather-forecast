@@ -108,12 +108,6 @@ const WeatherBox = () => {
                 m
               </Typography>
             </Box>
-            {/* <Typography variant="body1" sx={{ backgroundColor: "green", m: "10px" }}>
-              湿度
-            </Typography>
-            <Typography variant="body1" sx={{ backgroundColor: "green", m: "10px" }}>
-              風速
-            </Typography> */}
           </Box>
           <Box
             sx={{
@@ -131,13 +125,6 @@ const WeatherBox = () => {
                   temperature={(item.main.temp - 273.15).toFixed(1)} // ケルビンから摂氏に変換
                 />
               ))}
-            {/* {threeHoursWeatherData.list.map((item, index) => (
-              <HourlyWeatherItem key={index} hour={item.hour} weather={item.weather} temperature={item.temperature} />
-            ))} */}
-            {/* <HourlyWeatherItem hour={3} weather="晴れ" temperature={20} />
-            <HourlyWeatherItem hour={6} weather="曇り" temperature={13} />
-            <HourlyWeatherItem hour={9} weather="雷" temperature={5} />
-            <HourlyWeatherItem hour={12} weather="雨" temperature={2} /> */}
 
             <Box
               sx={{
@@ -147,12 +134,6 @@ const WeatherBox = () => {
                 m: "10px",
               }}
             ></Box>
-            {/* <Typography variant="body1" sx={{ backgroundColor: "green", m: "10px" }}>
-              湿度
-            </Typography>
-            <Typography variant="body1" sx={{ backgroundColor: "green", m: "10px" }}>
-              風速
-            </Typography> */}
           </Box>
         </Box>
       </Box>
