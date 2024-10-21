@@ -6,11 +6,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import HourlyWeatherItem from "./HourlyWeatherItem";
 import { ThreeHoursWeatherDataList } from "@/types/types";
+import CurrentWeatherDisplay from "./CurrentWeatherDisplay";
 
 const WeatherBox = () => {
   const { weatherData, threeHoursWeatherData } = useWeather("Hiratsuka");
-  console.log(weatherData);
-  console.log(threeHoursWeatherData);
+  // console.log(weatherData, "weatherData");
+  // console.log(threeHoursWeatherData);
   return (
     <>
       <Box
@@ -25,116 +26,34 @@ const WeatherBox = () => {
           textAlign: "center",
         }}
       >
-        <Box sx={{ p: 3 }}>
-          <Typography variant="body1" sx={{ m: "10px" }}>
-            {weatherData?.name}
-          </Typography>
-          <Typography variant="h2" sx={{ m: "10px" }}>
-            {`${(weatherData?.main.temp - 273.15).toFixed(1)}°C`}
-          </Typography>
+        <CurrentWeatherDisplay />
 
-          <Typography variant="body1" sx={{ m: "10px" }}>
-            {weatherTranslation[weatherData?.weather[0].main]}
-          </Typography>
+        {/* ここから予報 */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            m: "10px",
+          }}
+        >
+          {threeHoursWeatherData?.list &&
+            threeHoursWeatherData.list.slice(1, 5).map((item: ThreeHoursWeatherDataList, index: number) => (
+              <HourlyWeatherItem
+                key={index}
+                hour={new Date(item.dt * 1000).getHours()} // UNIXタイムスタンプを時間に変換
+                weather={weatherTranslation[item.weather[0].main]}
+                temperature={(item.main.temp - 273.15).toFixed(1)} // ケルビンから摂氏に変換
+              />
+            ))}
+
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
+              alignItems: "center",
               m: "10px",
             }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                m: "10px",
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  // backgroundColor: "blue",
-                  writingMode: "vertical-rl",
-                }}
-              >
-                降水量
-              </Typography>
-              <Typography variant="body1" sx={{ textAlign: "center" }}>
-                mm
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                m: "10px",
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  // backgroundColor: "blue",
-                  writingMode: "vertical-rl",
-                }}
-              >
-                湿度
-              </Typography>
-              <Typography variant="body1" sx={{ textAlign: "center" }}>
-                %
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                m: "10px",
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  // backgroundColor: "blue",
-                  writingMode: "vertical-rl",
-                }}
-              >
-                風速
-              </Typography>
-              <Typography variant="body1" sx={{ textAlign: "center" }}>
-                m
-              </Typography>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              m: "10px",
-            }}
-          >
-            {threeHoursWeatherData?.list &&
-              threeHoursWeatherData.list.slice(1, 5).map((item: ThreeHoursWeatherDataList, index: number) => (
-                <HourlyWeatherItem
-                  key={index}
-                  hour={new Date(item.dt * 1000).getHours()} // UNIXタイムスタンプを時間に変換
-                  weather={weatherTranslation[item.weather[0].main]}
-                  temperature={(item.main.temp - 273.15).toFixed(1)} // ケルビンから摂氏に変換
-                />
-              ))}
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                m: "10px",
-              }}
-            ></Box>
-          </Box>
+          ></Box>
         </Box>
       </Box>
     </>
