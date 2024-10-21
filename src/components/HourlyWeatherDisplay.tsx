@@ -16,6 +16,9 @@ const HourlyWeatherDisplay = () => {
           display: "flex",
           justifyContent: "center",
           m: "10px",
+          p: "5px",
+          borderRadius: "10px",
+          bgcolor: `rgba(0,0,0,0.05)`,
         }}
       >
         {threeHoursWeatherData?.list &&

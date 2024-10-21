@@ -18,6 +18,7 @@ const WeatherBox = () => {
           boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.15)", // 影を追加するときはその分
           color: "white", // テキストの色を白に設定
           m: "10px",
+          p: "15px",
           borderRadius: "10px", // 角を丸くする
           flexDirection: "column", // 縦並びに設定
           alignItems: "center", // 中央揃え

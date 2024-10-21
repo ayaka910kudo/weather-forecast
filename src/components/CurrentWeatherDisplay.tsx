@@ -26,7 +26,7 @@ const CurrentWeatherDisplay = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            m: "10px",
+            m: "3px",
           }}
         >
           <Box
