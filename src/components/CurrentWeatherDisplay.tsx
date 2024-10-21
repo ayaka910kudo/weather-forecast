@@ -4,11 +4,15 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import HourlyWeatherItem from "./HourlyWeatherItem";
 import { ThreeHoursWeatherDataList } from "@/types/types";
-
+import Image from "next/image";
 const CurrentWeatherDisplay = () => {
   const { weatherData, threeHoursWeatherData } = useWeather("Hiratsuka");
   console.log(weatherData, "weatherData");
   console.log(threeHoursWeatherData);
+
+  // 天気アイコンのURLを生成
+  const iconCode = weatherData?.weather[0].icon; // 天気データのアイコンコード
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; // アイコンURL
   return (
     <>
       <Box sx={{ p: 1 }}>
@@ -18,7 +22,12 @@ const CurrentWeatherDisplay = () => {
         <Typography variant="h2" sx={{ m: "10px" }}>
           {`${(weatherData?.main.temp - 273.15).toFixed(1)}°C`}
         </Typography>
-
+        <Image
+          src={iconUrl}
+          alt="説明文"
+          width={100} // 画像の幅
+          height={100} // 画像の高さ
+        />
         <Typography variant="body1" sx={{ m: "10px" }}>
           {weatherTranslation[weatherData?.weather[0].main]}
         </Typography>
