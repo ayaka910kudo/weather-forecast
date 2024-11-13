@@ -1,4 +1,5 @@
 import { weatherTranslation } from "../constants/translation";
+
 import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
