@@ -5,13 +5,14 @@ import Image from "next/image";
 type HourlyWeatherItem = {
   hour: number;
   weather: string;
+  iconCode: string;
   temperature: number;
 };
 
-const HourlyWeatherItem = ({ hour, weather, temperature }: HourlyWeatherItem) => {
+const HourlyWeatherItem = ({ hour, weather, iconCode, temperature }: HourlyWeatherItem) => {
   // TODO 天気のアイコンが現在の天気のものになってるから、予報のものに書き換える
   const { weatherData } = useWeather("Hiratsuka");
-  const iconCode = weatherData?.weather[0].icon; // 天気データのアイコンコード
+  // const iconCode = weatherData?.weather[0].icon;
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; // アイコンURL
   return (
     <Box
@@ -24,7 +25,7 @@ const HourlyWeatherItem = ({ hour, weather, temperature }: HourlyWeatherItem) =>
       }}
     >
       <Typography variant="body1" sx={{ textAlign: "center" }}>
-        {`${hour}時間後`}
+        {`${hour}時`}
       </Typography>
       <Typography variant="body1" sx={{ textAlign: "center" }}>
         {weather}

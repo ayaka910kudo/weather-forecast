@@ -8,7 +8,8 @@ import { ThreeHoursWeatherDataList } from "@/types/types";
 const HourlyWeatherDisplay = () => {
   const { weatherData, threeHoursWeatherData } = useWeather("Hiratsuka");
   console.log(weatherData, "weatherData");
-  console.log(threeHoursWeatherData);
+  console.log(threeHoursWeatherData, "ThreeHoursWeatherData");
+
   return (
     <>
       <Box
@@ -22,11 +23,12 @@ const HourlyWeatherDisplay = () => {
         }}
       >
         {threeHoursWeatherData?.list &&
-          threeHoursWeatherData.list.slice(1, 5).map((item: ThreeHoursWeatherDataList, index: number) => (
+          threeHoursWeatherData.list.slice(0, 5).map((item: ThreeHoursWeatherDataList, index: number) => (
             <HourlyWeatherItem
               key={index}
-              hour={new Date(item.dt * 1000).getHours()} // UNIXタイムスタンプを時間に変換
+              hour={new Date(item.dt * 1000).getHours()} // UNIXタイムスタンプを時間に変換、ブラウザが自動的にローカルタイムゾーンで表示
               weather={weatherTranslation[item.weather[0].main]}
+              iconCode={item.weather[0].icon}
               temperature={(item.main.temp - 273.15).toFixed(1)} // ケルビンから摂氏に変換
             />
           ))}
