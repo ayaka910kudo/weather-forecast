@@ -9,14 +9,8 @@ import { ThreeHoursWeatherDataList } from "@/types/types";
 import CurrentWeatherDisplay from "./CurrentWeatherDisplay";
 import HourlyWeatherDisplay from "./HourlyWeatherDisplay";
 import { useEffect, useState } from "react";
-import { useGeolocation } from "@/hooks/useGeolocation";
 
 const WeatherBox = () => {
-  const { latitude, longitude } = useGeolocation();
-
-  console.log(latitude, "lat");
-  console.log(longitude, "lon");
-
   return (
     <Box
       sx={{

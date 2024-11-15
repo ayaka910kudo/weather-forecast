@@ -10,9 +10,6 @@ type HourlyWeatherItem = {
 };
 
 const HourlyWeatherItem = ({ hour, weather, iconCode, temperature }: HourlyWeatherItem) => {
-  // TODO 天気のアイコンが現在の天気のものになってるから、予報のものに書き換える
-  const { weatherData } = useWeather("Hiratsuka");
-  // const iconCode = weatherData?.weather[0].icon;
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; // アイコンURL
   return (
     <Box

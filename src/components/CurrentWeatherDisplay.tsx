@@ -1,19 +1,22 @@
 import { weatherTranslation } from "../constants/translation";
-
 import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import HourlyWeatherItem from "./HourlyWeatherItem";
-import { ThreeHoursWeatherDataList } from "@/types/types";
 import Image from "next/image";
+import { useGeolocation } from "@/hooks/useGeolocation";
+
 const CurrentWeatherDisplay = () => {
-  const { weatherData, threeHoursWeatherData } = useWeather("Hiratsuka");
+  const { latitude, longitude } = useGeolocation(); //緯度と経度を取得
+  const { weatherData, threeHoursWeatherData } = useWeather({ lat: latitude, lon: longitude });
   console.log(weatherData, "weatherData");
   console.log(threeHoursWeatherData);
 
   // 天気アイコンのURLを生成
   const iconCode = weatherData?.weather[0].icon; // 天気データのアイコンコード
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; // アイコンURL
+
+  console.log(latitude, "lat");
+  console.log(longitude, "lon");
   return (
     <>
       <Box sx={{ p: 1 }}>

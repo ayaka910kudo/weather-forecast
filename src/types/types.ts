@@ -110,3 +110,8 @@ export type ThreeHoursWeatherApiResponse = {
     sunset: number;
   };
 };
+
+export type Geolocation = {
+  lat: number | null;
+  lon: number | null;
+};
