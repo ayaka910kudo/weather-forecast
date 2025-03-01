@@ -1,14 +1,14 @@
 "use client";
 
-import { weatherTranslation } from "../constants/translation";
-import { useWeather } from "../hooks/useWeather";
+// import { weatherTranslation } from "../constants/translation";
+// import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import HourlyWeatherItem from "./HourlyWeatherItem";
-import { ThreeHoursWeatherDataList } from "@/types/types";
+// import Typography from "@mui/material/Typography";
+// import HourlyWeatherItem from "./HourlyWeatherItem";
+// import { ThreeHoursWeatherDataList } from "@/types/types";
 import CurrentWeatherDisplay from "./CurrentWeatherDisplay";
 import HourlyWeatherDisplay from "./HourlyWeatherDisplay";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const WeatherBox = () => {
   return (

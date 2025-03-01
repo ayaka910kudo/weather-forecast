@@ -31,7 +31,7 @@ const HourlyWeatherDisplay = () => {
               hour={new Date(item.dt * 1000).getHours()} // UNIXタイムスタンプを時間に変換、ブラウザが自動的にローカルタイムゾーンで表示
               weather={weatherTranslation[item.weather[0].main]}
               iconCode={item.weather[0].icon}
-              temperature={(item.main.temp - 273.15).toFixed(1)} // ケルビンから摂氏に変換
+              temperature={Number((item.main.temp - 273.15).toFixed(1))} // ケルビンから摂氏に変換
             />
           ))}
       </Box>

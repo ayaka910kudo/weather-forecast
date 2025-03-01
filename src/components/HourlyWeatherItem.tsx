@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useWeather } from "../hooks/useWeather";
+// import { useWeather } from "../hooks/useWeather";
 import Image from "next/image";
 
 type HourlyWeatherItem = {
