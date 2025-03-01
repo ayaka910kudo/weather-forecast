@@ -21,7 +21,7 @@ const HourlyWeatherItem = ({ hour, weather, iconCode, temperature }: HourlyWeath
         flexDirection: "column", //縦向きに組む
       }}
     >
-      <Typography variant="body1" sx={{ textAlign: "center" }}>
+      <Typography variant="body1" fontWeight={700} sx={{ textAlign: "center" }}>
         {`${hour}時`}
       </Typography>
       <Typography variant="body1" sx={{ textAlign: "center" }}>
