@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 
-const INIT_LAT = 35.6852377; // 皇居の緯度
-const INIT_LON = 139.7115998; // 皇居の経度
+const initGeolocation = { lat: 35.6852377, lon: 139.7115998 }; // 皇居
 
 export const useGeolocation = () => {
-  const [latitude, setLatitude] = useState<number>(INIT_LAT);
-  const [longitude, setLongitude] = useState<number>(INIT_LON);
+  const [latitude, setLatitude] = useState<number>(initGeolocation.lat);
+  const [longitude, setLongitude] = useState<number>(initGeolocation.lon);
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {
