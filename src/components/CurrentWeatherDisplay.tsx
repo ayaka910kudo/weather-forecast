@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useGeolocation } from "@/hooks/useGeolocation";
+import { Button } from "@mui/material";
 
 const CurrentWeatherDisplay = () => {
   const { latitude, longitude } = useGeolocation(); //緯度と経度を取得
@@ -19,6 +20,7 @@ const CurrentWeatherDisplay = () => {
   console.log(longitude, "lon");
   return (
     <>
+      <Button>現在地の天気</Button>
       <Box sx={{ p: 1 }}>
         <Typography variant="body1" sx={{ m: "10px" }}>
           {weatherData?.name}
