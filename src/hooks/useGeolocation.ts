@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const initGeolocation = { lat: 35.6852377, lon: 139.7115998 }; // 皇居
 
+// 関数が走るとlatitudeとlongitudeに値が入る
 export const useGeolocation = () => {
   const [latitude, setLatitude] = useState<number>(initGeolocation.lat);
   const [longitude, setLongitude] = useState<number>(initGeolocation.lon);
