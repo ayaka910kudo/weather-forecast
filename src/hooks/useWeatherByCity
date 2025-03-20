@@ -1,0 +1,40 @@
+import { fetchCurrentWeatherByCity, fetchThreeHoursWeatherDataByCity } from "../services/weather";
+import { useEffect, useState } from "react";
+// import type { Geolocation } from "@/types/types";
+
+// APIからデータを取得する
+// TODO 引数cityを緯度経度に変更、各fetchのurlを変更
+export const useWeatherByCity = (cityName: string) => {
+  const [weatherData, setWeatherData] = useState<any>(null);
+  const [threeHoursWeatherData, setThreeHoursWeatherData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    const getWeatherDataByCity = async () => {
+      try {
+        const data = await fetchCurrentWeatherByCity(cityName);
+        setWeatherData(data);
+      } catch (err) {
+        setError(err);
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const getThreeHoursWeatherDataByCity = async () => {
+      try {
+        const data = await fetchThreeHoursWeatherDataByCity(cityName);
+        setThreeHoursWeatherData(data);
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    getWeatherDataByCity();
+    getThreeHoursWeatherDataByCity();
+  }, [cityName]);
+
+  return { weatherData, threeHoursWeatherData, loading, error };
+};
