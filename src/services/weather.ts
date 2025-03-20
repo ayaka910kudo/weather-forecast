@@ -20,7 +20,7 @@ export const fetchCurrentWeather = async ({ lat, lon }: Geolocation) => {
 export const fetchCurrentWeatherByCity = async (cityName: string) => {
   try {
     const response = await axios.get(`${ow_api_url}/weather?q=${cityName}&appid=${ow_api_key}`);
-    https: return response.data;
+    return response.data;
   } catch (error: any) {
     throw new Error("Error fetching weather data: " + error.message);
   }

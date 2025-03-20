@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 // APIからデータを取得する
 // TODO 引数cityを緯度経度に変更、各fetchのurlを変更
 export const useWeatherByCity = (cityName: string) => {
-  const [weatherData, setWeatherData] = useState<any>(null);
-  const [threeHoursWeatherData, setThreeHoursWeatherData] = useState<any>(null);
+  const [weatherDataByCity, setWeatherDataByCity] = useState<any>(null);
+  const [threeHoursWeatherDataByCity, setThreeHoursWeatherDataByCity] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
 
@@ -14,7 +14,7 @@ export const useWeatherByCity = (cityName: string) => {
     const getWeatherDataByCity = async () => {
       try {
         const data = await fetchCurrentWeatherByCity(cityName);
-        setWeatherData(data);
+        setWeatherDataByCity(data);
       } catch (err) {
         setError(err);
         console.error(err);
@@ -26,7 +26,7 @@ export const useWeatherByCity = (cityName: string) => {
     const getThreeHoursWeatherDataByCity = async () => {
       try {
         const data = await fetchThreeHoursWeatherDataByCity(cityName);
-        setThreeHoursWeatherData(data);
+        setThreeHoursWeatherDataByCity(data);
       } catch (err) {
         setError(err);
       }
@@ -35,6 +35,7 @@ export const useWeatherByCity = (cityName: string) => {
     getWeatherDataByCity();
     getThreeHoursWeatherDataByCity();
   }, [cityName]);
+  console.log(weatherDataByCity, "wetherDataByCity");
 
-  return { weatherData, threeHoursWeatherData, loading, error };
+  return { weatherDataByCity, threeHoursWeatherDataByCity, loading, error };
 };

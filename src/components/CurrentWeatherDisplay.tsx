@@ -1,29 +1,31 @@
 import { weatherTranslation } from "../constants/translation";
 import { useWeather } from "../hooks/useWeather";
+import { useWeatherByCity } from "../hooks/useWeatherByCity.ts";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useGeolocation } from "@/hooks/useGeolocation";
-import { Button, Select, MenuItem } from "@mui/material";
+import { Button, Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const CurrentWeatherDisplay = () => {
   const { latitude, longitude } = useGeolocation(); // 現在地の緯度と経度を取得
-  const [selectedCity, setSelectedCity] = useState<string>(""); // 選択された都市
+  const [selectedCity, setSelectedCity] = useState<string>("Osaka"); // 選択された都市
   const [cityCoordinates, setCityCoordinates] = useState<{ lat: number; lon: number } | null>(null); // 都市の緯度経度
 
   const { weatherData } = useWeather(cityCoordinates || { lat: latitude, lon: longitude }); // 緯度経度に基づく天気データを取得
 
-  const handleCityChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleCityChange = (event: SelectChangeEvent<string>) => {
     const city = event.target.value as string;
     setSelectedCity(city);
-    // 都市名から天気情報を取得するためのロジックを追加
-    setCityCoordinates(null); // 都市名を選択した場合は緯度経度をnullに設定
+    setCityCoordinates(null);
   };
 
   const handleCurrentLocation = () => {
     setCityCoordinates({ lat: latitude, lon: longitude });
   };
+
+  useWeatherByCity(selectedCity);
 
   return (
     <>
