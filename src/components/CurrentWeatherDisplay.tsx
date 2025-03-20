@@ -4,23 +4,35 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useGeolocation } from "@/hooks/useGeolocation";
-import { Button } from "@mui/material";
+import { Button, Select, MenuItem } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const CurrentWeatherDisplay = () => {
-  const { latitude, longitude } = useGeolocation(); //緯度と経度を取得
-  const { weatherData, threeHoursWeatherData } = useWeather({ lat: latitude, lon: longitude });
-  console.log(weatherData, "weatherData");
-  console.log(threeHoursWeatherData);
+  const { latitude, longitude } = useGeolocation(); // 現在地の緯度と経度を取得
+  const [selectedCity, setSelectedCity] = useState<string>(""); // 選択された都市
+  const [cityCoordinates, setCityCoordinates] = useState<{ lat: number; lon: number } | null>(null); // 都市の緯度経度
 
-  // 天気アイコンのURLを生成
-  const iconCode = weatherData?.weather[0].icon; // 天気データのアイコンコード
-  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; // アイコンURL
+  const { weatherData } = useWeather(cityCoordinates || { lat: latitude, lon: longitude }); // 緯度経度に基づく天気データを取得
 
-  console.log(latitude, "lat");
-  console.log(longitude, "lon");
+  const handleCityChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const city = event.target.value as string;
+    setSelectedCity(city);
+    // 都市名から天気情報を取得するためのロジックを追加
+    setCityCoordinates(null); // 都市名を選択した場合は緯度経度をnullに設定
+  };
+
+  const handleCurrentLocation = () => {
+    setCityCoordinates({ lat: latitude, lon: longitude });
+  };
+
   return (
     <>
-      <Button>現在地の天気</Button>
+      <Select value={selectedCity} onChange={handleCityChange}>
+        <MenuItem value="Tokyo">Tokyo</MenuItem>
+        <MenuItem value="Osaka">Osaka</MenuItem>
+        {/* 他の都市を追加 */}
+      </Select>
+      <Button onClick={handleCurrentLocation}>現在地の天気</Button>
       <Box sx={{ p: 1 }}>
         <Typography variant="body1" sx={{ m: "10px" }}>
           {weatherData?.name}
@@ -29,10 +41,10 @@ const CurrentWeatherDisplay = () => {
           {`${(weatherData?.main.temp - 273.15).toFixed(1)}°C`}
         </Typography>
         <Image
-          src={iconUrl}
+          src={`https://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`}
           alt="説明文"
-          width={100} // 画像の幅
-          height={100} // 画像の高さ
+          width={100}
+          height={100}
         />
         <Typography variant="body1" sx={{ m: "10px" }}>
           {weatherTranslation[weatherData?.weather[0].main]}
@@ -64,7 +76,6 @@ const CurrentWeatherDisplay = () => {
             <Typography
               variant="body2"
               sx={{
-                // backgroundColor: "blue",
                 writingMode: "vertical-rl",
               }}
             >
@@ -86,7 +97,6 @@ const CurrentWeatherDisplay = () => {
             <Typography
               variant="body2"
               sx={{
-                // backgroundColor: "blue",
                 writingMode: "vertical-rl",
               }}
             >
