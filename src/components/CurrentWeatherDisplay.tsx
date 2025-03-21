@@ -1,12 +1,12 @@
 import { weatherTranslation } from "../constants/translation";
 import { useWeather } from "../hooks/useWeather";
-import { useWeatherByCity } from "../hooks/useWeatherByCity.ts";
+import { useWeatherByCity } from "../hooks/useWeatherByCity";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { Button, Select, MenuItem, SelectChangeEvent } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const CurrentWeatherDisplay = () => {
   const { latitude, longitude } = useGeolocation(); // 現在地の緯度と経度を取得
