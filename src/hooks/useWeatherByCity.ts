@@ -1,6 +1,5 @@
 import { fetchCurrentWeatherByCity, fetchThreeHoursWeatherDataByCity } from "../services/weather";
 import { useEffect, useState } from "react";
-// import type { Geolocation } from "@/types/types";
 
 // APIからデータを取得する
 // TODO 引数cityを緯度経度に変更、各fetchのurlを変更

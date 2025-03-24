@@ -1,16 +1,39 @@
 "use client";
 
-// import { weatherTranslation } from "../constants/translation";
-// import { useWeather } from "../hooks/useWeather";
+import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-// import HourlyWeatherItem from "./HourlyWeatherItem";
-// import { ThreeHoursWeatherDataList } from "@/types/types";
 import CurrentWeatherDisplay from "./CurrentWeatherDisplay";
 import HourlyWeatherDisplay from "./HourlyWeatherDisplay";
-// import { useEffect, useState } from "react";
+import { Select, MenuItem, SelectChangeEvent } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useGeolocation } from "@/hooks/useGeolocation";
+import { useWeatherByCity } from "@/hooks/useWeatherByCity";
 
 const WeatherBox = () => {
+  const [selectedCity, setSelectedCity] = useState<string>("現在地"); // 選択された都市
+  const { latitude, longitude } = useGeolocation(); // 現在地の緯度と経度を取得
+  const { weatherData, threeHoursWeatherData } = useWeather({ lat: latitude, lon: longitude });
+  const [currentWeatherData, setCurrentWeatherData] = useState(weatherData);
+  const [hourlyWeatherData, setHourlyWeatherData] = useState(threeHoursWeatherData);
+
+  /** 都市名が選択された時の処理 */
+  const handleCityChange = (event: SelectChangeEvent<string>) => {
+    const city = event.target.value as string;
+    setSelectedCity(city);
+  };
+
+  const { weatherDataByCity, threeHoursWeatherDataByCity } = useWeatherByCity(selectedCity);
+
+  useEffect(() => {
+    if (selectedCity === "現在地") {
+      setCurrentWeatherData(weatherData);
+      setHourlyWeatherData(threeHoursWeatherData);
+    } else {
+      setCurrentWeatherData(weatherDataByCity);
+      setHourlyWeatherData(threeHoursWeatherDataByCity);
+    }
+  }, [selectedCity, weatherData, threeHoursWeatherData, weatherDataByCity, threeHoursWeatherDataByCity]);
+
   return (
     <Box
       sx={{
@@ -25,9 +48,17 @@ const WeatherBox = () => {
         textAlign: "center",
       }}
     >
-      <CurrentWeatherDisplay />
+      {/* 都市名の選択 */}
+      <Select value={selectedCity} onChange={handleCityChange}>
+        <MenuItem value="現在地">現在地</MenuItem>
+        <MenuItem value="Tokyo">東京都</MenuItem>
+        <MenuItem value="Osaka">大阪府</MenuItem>
+        {/* 他の都市を追加 */}
+      </Select>
 
-      <HourlyWeatherDisplay />
+      {/* この2つには天気情報だけを渡して、表示するだけ */}
+      <CurrentWeatherDisplay weatherData={currentWeatherData} />
+      <HourlyWeatherDisplay threeHoursWeatherData={hourlyWeatherData} />
     </Box>
   );
 };
