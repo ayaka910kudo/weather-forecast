@@ -1,17 +1,9 @@
 import { weatherTranslation } from "../constants/translation";
-import { useWeather } from "../hooks/useWeather";
 import Box from "@mui/material/Box";
 import HourlyWeatherItem from "./HourlyWeatherItem";
 import { ThreeHoursWeatherDataList } from "@/types/types";
-import { useGeolocation } from "@/hooks/useGeolocation";
 
-const HourlyWeatherDisplay = () => {
-  const { latitude, longitude } = useGeolocation(); //緯度と経度を取得
-
-  const { weatherData, threeHoursWeatherData } = useWeather({ lat: latitude, lon: longitude });
-  console.log(weatherData, "weatherData");
-  console.log(threeHoursWeatherData, "ThreeHoursWeatherData");
-
+const HourlyWeatherDisplay = ({ threeHoursWeatherData }: any) => {
   return (
     <>
       <Box

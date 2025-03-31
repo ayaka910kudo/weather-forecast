@@ -4,7 +4,7 @@ import { Geolocation } from "@/types/types";
 const ow_api_url = process.env.NEXT_PUBLIC_OW_API_URL ?? "";
 const ow_api_key = process.env.NEXT_PUBLIC_OW_API_KEY ?? "";
 
-/** 天気情報を取得する関数 */
+/** 位置情報から現在の天気情報を取得する関数 */
 export const fetchCurrentWeather = async ({ lat, lon }: Geolocation) => {
   if (lat !== null && lon !== null) {
     try {
@@ -16,7 +16,17 @@ export const fetchCurrentWeather = async ({ lat, lon }: Geolocation) => {
   }
 };
 
-/** ３時間ごとの天気情報を取得する関数 */
+/** 都市名から現在の天気情報を取得する関数 */
+export const fetchCurrentWeatherByCity = async (cityName: string) => {
+  try {
+    const response = await axios.get(`${ow_api_url}/weather?q=${cityName}&appid=${ow_api_key}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error("Error fetching weather data: " + error.message);
+  }
+};
+
+/** 位置情報から３時間ごとの天気情報を取得する関数 */
 export const fetchThreeHoursWeatherData = async ({ lat, lon }: Geolocation) => {
   if (lat !== null && lon !== null) {
     try {
@@ -25,5 +35,15 @@ export const fetchThreeHoursWeatherData = async ({ lat, lon }: Geolocation) => {
     } catch (error: any) {
       throw new Error("Error fetching weather data: " + error.message);
     }
+  }
+};
+
+/** 都市名から３時間ごとの天気情報を取得する関数 */
+export const fetchThreeHoursWeatherDataByCity = async (cityName: string) => {
+  try {
+    const response = await axios.get(`${ow_api_url}/forecast?q=${cityName}&appid=${ow_api_key}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error("Error fetching weather data: " + error.message);
   }
 };
